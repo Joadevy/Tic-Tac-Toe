@@ -2,54 +2,63 @@ const container = document.querySelector('.container');
 const resetButton = document.getElementById('resetButton');
 const cells = container.querySelectorAll('.cell');
 
-let statusGame = false;
-let playerOne, playerTwo;
+let turn;
 
 const newGame = () => {
     cells.forEach(element => element.textContent = '');
-    statusGame = false;
+    turn = selectFirstPlayer();
 }
 
-resetButton.addEventListener("click",newGame);
-
-const printCell = (e) => {
-    console.log(e.target);
-    e.target.textContent ='0';
-}
-
-const playing = () => {
-    statusGame = true;
+const initializeTable = () => {
     for (let cell=0;cell<9;cell++)  {
         cells[cell].addEventListener("click",(e) => printCell(e));
     }
 }
 
-
-
-const setTurn = () => {
-    let empty = true;
-    // Asks if the game hasn't started yet.
-    cells.forEach
-    (cell => { if(cell.textContent != ''){
-                    return empty = false;
-                }
-            });
-
-    // If the game hasn't started, select first player symbol.
-    if(empty === true) {
-        selectFirstPlayer();
-    // If the game has started, changes the turn to the other player.
-    } else if(empty === false){
-        changeTurn();
+const printCell = (e) => {
+    // Asks for the actual player turn
+    turn = changeTurn(turn);
+    console.log(turn);
+    // Aca debe mostrar el simbolo dependiendo del turno del jugador, ya sea X || O.
+    if(turn == 0) {
+        e.target.textContent ='O';
+    } else if (turn == 1){
+        e.target.textContent ='X';
     }
 }
 
-const changeTurn = () => {
-    
+
+/* const isPlaying = () => {
+    let playing = false;
+    // Asks if the game hasn't started yet.
+    cells.forEach
+    (cell => { if(cell.textContent != ''){
+                    return playing = true;
+                }
+            });
+    return playing;
+} */
+
+// Selects a random number between 0/1 to define the first player.
+const selectFirstPlayer = () => {
+    return playerRandom = Math.round(Math.random());
 }
 
-playing();
-setTurn();
+const changeTurn = (previousPlayer) => {
+    if (previousPlayer == 0){
+        return 1;
+    } else if (previousPlayer == 1){
+        return 0;
+    }
+}
+
+const ticTacToe = () => {
+    newGame();
+    initializeTable();
+}
+
+ticTacToe();
+resetButton.addEventListener("click",newGame);
 
 
 
