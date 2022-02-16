@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: #222;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    gap: .5rem;
+}
+
+h1 {
+    color:whitesmoke;
+    opacity: 67%;
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3,100px);
+}
+
+.cell {
+    border: 1px solid cyan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    color: whitesmoke;
+    height: 90px;
+}
+
