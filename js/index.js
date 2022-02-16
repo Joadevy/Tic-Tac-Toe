@@ -17,8 +17,6 @@ const playing = () => {
     statusGame = true;
 }
 
-playing();
-
 const printCell = (e) => {
     console.log(e.target);
     e.target.textContent ='0';
