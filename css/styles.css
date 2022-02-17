@@ -31,7 +31,7 @@ h1 {
 }
 
 .cell {
-    border: 1px solid cyan;
+    border: 1px solid rgb(66, 170, 170);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,12 +45,12 @@ h1 {
 }
 
 button {
-    border: .5px solid cyan;
+    border: .5px solid rgb(66, 170, 170);
     background-color: rgb(20, 19, 19);
     color: whitesmoke;
     border-radius: 10px;
     padding: .25rem;
-    width: 50%;
+    width: 35%;
     text-align: center;
 }
 
@@ -63,3 +63,31 @@ button:hover {
     color: greenyellow;
 }
 
+.global-scores {
+    color: white;
+    border: .25px outset darkcyan;
+    padding: .5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.global-scores>p{
+    opacity: 67%;
+}
+
+#tic:hover{
+    color: rgb(66, 170, 170);
+}
+
+#scoreX>b, .darksalmon, #tac:hover{
+    color: darksalmon;
+}
+
+#scoreO>b, .darkolivegreen, #toe:hover{
+    color: darkolivegreen;
+}
+
+.darksalmon, .darkolivegreen{
+    font-size: 3rem;
+    font-weight: bold;
+}

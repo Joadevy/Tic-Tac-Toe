@@ -9,10 +9,15 @@
 </head>
 <body>
     <header>
-        <h1>TIC TAC TOE!</h1>
+        <h1><span id="tic">TIC</span><span id="tac"> TAC</span><span id="toe"> TOE</span>!</h1>
     </header>
 
     <main>
+        <div class="global-scores">
+            <p id="scoreX">Player X: <b>0</b></p>
+            <p id="scoreO">Player O: <b>0</b></p>
+        </div>
+
         <div class="container">
             <div class="cell"></div>
             <div class="cell"></div>
@@ -24,9 +29,8 @@
             <div class="cell"></div>
             <div class="cell"></div>
         </div>
-
         <div class="result"></div>
-        <button id="resetButton">Reset game</button>
+        <button id="resetButton">Play again</button>
     </main>
     
     <footer>
