@@ -25,7 +25,7 @@ const newGame = () => {
     playsCounter = 0;
 }
 
-const initializeTable = () => {
+const playing = () => {
     for (let cell=0;cell<9;cell++)  {
         cells[cell].addEventListener("click",(e) => printCell(e));
     }
@@ -84,7 +84,7 @@ const changeTurn = (previousPlayer) => {
 
 const ticTacToe = () => {
     newGame();
-    initializeTable();
+    playing();
 }
 
 ticTacToe();
