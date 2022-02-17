@@ -69,17 +69,6 @@ const checkForWinner = () => {
     }
 }
 
-/* const isPlaying = () => {
-    let playing = false;
-    // Asks if the game hasn't started yet.
-    cells.forEach
-    (cell => { if(cell.textContent != ''){
-                    return playing = true;
-                }
-            });
-    return playing;
-} */
-
 // Selects a random number between 0/1 to define the first player.
 const selectFirstPlayer = () => {
     return playerRandom = Math.round(Math.random());
