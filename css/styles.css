@@ -42,3 +42,9 @@ button:hover {
     opacity: .75;
 }
 
+.result {
+    text-align: center;
+    color: greenyellow;
+    margin-top:.25rem;
+}
+
