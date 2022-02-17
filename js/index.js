@@ -18,11 +18,12 @@ const initializeTable = () => {
 const printCell = (e) => {
     // Asks for the actual player turn
     turn = changeTurn(turn);
-    console.log(turn);
-    // Aca debe mostrar el simbolo dependiendo del turno del jugador, ya sea X || O.
-    if(turn == 0) {
+
+    // function (muestraTurnoEnPantalla) >>>> Que muestre un cartelito de que jugador va proximo.
+    // Displays the symbol acordding to the turn-player and if the cell is empty.
+    if((turn == 0)&&(e.target.textContent === '')) {
         e.target.textContent ='O';
-    } else if (turn == 1){
+    } else if ((turn == 1)&&(e.target.textContent === '')){
         e.target.textContent ='X';
     }
 }
