@@ -54,13 +54,13 @@ const checkForWinner = () => {
             (cells[WINNING_PLAYS[play][1]].textContent == 'X')&&
             (cells[WINNING_PLAYS[play][2]].textContent == 'X')){
                         gameStatus = false;
-                        result.textContent = 'GANO X';
+                        result.textContent = 'PLAYER X WIN';
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][1]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][2]].textContent == 'O')){
                         gameStatus = false;
-                        result.textContent =  'GANO O';
+                        result.textContent =  'PLAYER O WIN';
              } else if ((playsCounter == 9) && (gameStatus == true)) { // If there are 9 moves on the table and game hasn't ended yet, it's a draw.
                         result.textContent =  'DRAW';
                         gameStatus = false;
