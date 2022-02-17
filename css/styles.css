@@ -75,19 +75,31 @@ button:hover {
     opacity: 67%;
 }
 
-#tic:hover{
-    color: rgb(66, 170, 170);
+#tictactoe:hover{
+    animation: tictactoe 2s infinite;
 }
 
-#scoreX>b, .darksalmon, #tac:hover{
+#scoreX>b, .darksalmon{
     color: darksalmon;
 }
 
-#scoreO>b, .darkolivegreen, #toe:hover{
+#scoreO>b, .darkolivegreen{
     color: darkolivegreen;
 }
 
 .darksalmon, .darkolivegreen{
     font-size: 3rem;
     font-weight: bold;
+}
+
+@keyframes tictactoe {
+    0% {
+        color: rgb(66, 170, 170);
+    }
+    50% {
+        color: darksalmon;
+    }
+    100% {
+        color: darkolivegreen;
+    }
 }

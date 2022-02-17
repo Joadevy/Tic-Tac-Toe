@@ -1,9 +1,9 @@
 const container = document.querySelector('.container');
-const resetButton = document.getElementById('resetButton');
 const cells = container.querySelectorAll('.cell');
 const result = document.querySelector(".result");
 const scoreX = document.getElementById("scoreX");
 const scoreO = document.getElementById("scoreO");
+const main = document.querySelector(".main");
 
 let turn;
 let gameStatus = false;
@@ -26,6 +26,15 @@ const newGame = () => {
     gameStatus = true;
     result.textContent = '';
     playsCounter = 0;
+   /*  if (buttonActive == true) {
+        let button = document.querySelector('.resetButton');
+        main.removeChild(button);
+        buttonActive == false;
+    } */
+     if (document.querySelector(".resetButton") != null) {
+        let button = document.querySelector('.resetButton');
+        main.removeChild(button);
+    } 
 }
 
 const playing = () => {
@@ -64,6 +73,7 @@ const checkForWinner = () => {
                         gameStatus = false;
                         result.textContent = 'PLAYER X WIN';
                         winsCounterX++;
+                        playAgain();
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][1]].textContent == 'O')&&
@@ -71,11 +81,14 @@ const checkForWinner = () => {
                         gameStatus = false;
                         result.textContent =  'PLAYER O WIN';
                         winsCounterO++;
-             } else if ((playsCounter == 9) && (gameStatus == true)) { // If there are 9 moves on the table and game hasn't ended yet, it's a draw.
-                        result.textContent =  'DRAW';
-                        gameStatus = false;
-            }
+                        playAgain();
+             } 
         }
+    }
+    if ((playsCounter == 9) && (gameStatus == true)) { // If there are 9 moves on the table and game hasn't ended yet, it's a draw.
+        result.textContent =  'DRAW';
+        gameStatus = false;
+        playAgain();
     }
 }
 
@@ -102,6 +115,13 @@ const updateGlobalScore = (gameStatus) => {
 }
    // global_scores.textContent = winsCounterO;
 
+const playAgain = () => {
+    const button = document.createElement("BUTTON");
+    button.textContent = "Play again!";
+    button.classList.add('resetButton');
+    main.appendChild(button);
+    button.addEventListener("click",newGame);
+}
 
 const ticTacToe = () => {
     newGame();
@@ -109,4 +129,3 @@ const ticTacToe = () => {
 }
 
 ticTacToe();
-resetButton.addEventListener("click",newGame);
