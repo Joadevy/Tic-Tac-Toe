@@ -92,6 +92,54 @@ button:hover {
     font-weight: bold;
 }
 
+.modal-container {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30%;
+    border: .25px solid rgb(66, 170, 170);
+    border-radius: 10px;
+    height: 40%;
+    background-color: rgb(216, 216, 216);
+    position: relative;
+    transition: transform .5s;
+    transform: translateY(0%);
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(255, 72, 72);
+    border-radius: 50%;
+    color: white;
+    line-height: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.modal-close {
+    transform: translateY(-200%);
+}
+
 @keyframes tictactoe {
     0% {
         color: rgb(66, 170, 170);

@@ -4,6 +4,9 @@ const result = document.querySelector(".result");
 const scoreX = document.getElementById("scoreX");
 const scoreO = document.getElementById("scoreO");
 const main = document.querySelector(".main");
+const closeModal = document.querySelector('.close');
+const modal = document.querySelector('.modal');
+const modalContainer = document.querySelector('.modal-container');
 
 let turn;
 let gameStatus = false;
@@ -26,11 +29,6 @@ const newGame = () => {
     gameStatus = true;
     result.textContent = '';
     playsCounter = 0;
-   /*  if (buttonActive == true) {
-        let button = document.querySelector('.resetButton');
-        main.removeChild(button);
-        buttonActive == false;
-    } */
      if (document.querySelector(".resetButton") != null) {
         let button = document.querySelector('.resetButton');
         main.removeChild(button);
@@ -74,6 +72,7 @@ const checkForWinner = () => {
                         result.textContent = 'PLAYER X WIN';
                         winsCounterX++;
                         playAgain();
+                        openModal();
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][1]].textContent == 'O')&&
@@ -82,6 +81,7 @@ const checkForWinner = () => {
                         result.textContent =  'PLAYER O WIN';
                         winsCounterO++;
                         playAgain();
+                        openModal();
              } 
         }
     }
@@ -89,6 +89,7 @@ const checkForWinner = () => {
         result.textContent =  'DRAW';
         gameStatus = false;
         playAgain();
+        openModal();
     }
 }
 
@@ -113,7 +114,6 @@ const updateGlobalScore = (gameStatus) => {
         scoreO.innerHTML = `Player O: <b>${winsCounterO}</b>`;
     }
 }
-   // global_scores.textContent = winsCounterO;
 
 const playAgain = () => {
     const button = document.createElement("BUTTON");
@@ -122,6 +122,28 @@ const playAgain = () => {
     main.appendChild(button);
     button.addEventListener("click",newGame);
 }
+
+const openModal = () => {
+    modalContainer.style.opacity = "1";
+    modalContainer.style.visibility = "visible";
+    modal.classList.toggle("modal-close");
+}
+
+const removeModal = () => {
+    modal.classList.toggle("modal-close");
+    setTimeout(()=>{
+        modalContainer.style.opacity = "0";
+        modalContainer.style.visibility = "hidden";
+    },500);
+}
+
+closeModal.addEventListener('click',removeModal);
+
+window.addEventListener("click", (e)=> {
+    if(e.target == modalContainer) {
+        removeModal();
+    }
+})
 
 const ticTacToe = () => {
     newGame();
