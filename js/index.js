@@ -8,6 +8,7 @@ const closeModal = document.querySelector('.close');
 const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modal-container');
 const modalButtons = document.querySelector('.modal-buttons');
+const showFirstTurn = document.querySelector('.firstTurn');
 
 let turn;
 let gameStatus = false;
@@ -36,6 +37,13 @@ const newGame = () => {
         modalButtons.removeChild(button[1]);
         removeModal();
     } 
+     if (turn != 0) {
+        showFirstTurn.textContent= `Fist player: O`;
+        showFirstTurn.style.color = "darkolivegreen";
+    } else {
+        showFirstTurn.textContent = `First player: X`;
+        showFirstTurn.style.color = "darksalmon";
+    } 
 }
 
 const playing = () => {
@@ -46,6 +54,7 @@ const playing = () => {
 
 const printCell = (e) => {
     // Change the actual player turn if the cell is empty
+    showFirstTurn.textContent= ``;
     if (e.target.textContent === '') {
         turn = changeTurn(turn);
 

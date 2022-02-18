@@ -25,6 +25,11 @@ h1 {
     text-align: center;
 }
 
+.firstTurn {
+    font-weight: bold;
+    font-style: italic;
+}
+
 .container {
     display: grid;
     grid-template-columns: repeat(3,100px);
