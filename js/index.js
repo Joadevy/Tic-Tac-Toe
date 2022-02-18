@@ -120,7 +120,7 @@ const updateGlobalScore = (gameStatus) => {
 
 const playAgain = () => {
     const button = document.createElement("BUTTON");
-    button.textContent = "Play again!";
+    button.textContent = "Play again";
     button.classList.add('resetButton');
     modalButtons.appendChild(button);
     button.addEventListener("click",newGame);
