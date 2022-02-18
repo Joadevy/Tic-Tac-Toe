@@ -128,11 +128,11 @@ button:hover, .close:hover {
     width: 30%;
     border: .25px solid rgb(66, 170, 170);
     border-radius: 10px;
-    height: 40%;
+    height: 35%;
     background-color: rgb(82, 82, 82);
     position: relative;
     transition: transform .5s;
-    transform: translateY(0%);
+    transform: translateY(35%);
 }
 
 .close {
