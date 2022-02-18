@@ -60,7 +60,11 @@ button:hover {
 }
 
 .result {
-    color: greenyellow;
+    animation: tictactoe 3s infinite;
+    align-self: center;
+    margin-top: 80px;
+    font-size: 45px;
+    font-weight: bold;
 }
 
 .global-scores {
@@ -109,8 +113,8 @@ button:hover {
 
 .modal {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    flex-direction: column-reverse;
+    justify-content: space-between;
     width: 30%;
     border: .25px solid rgb(66, 170, 170);
     border-radius: 10px;
@@ -138,6 +142,17 @@ button:hover {
 
 .modal-close {
     transform: translateY(-200%);
+}
+
+.modal-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.modal-buttons>button {
+    margin-bottom: .5rem;
 }
 
 @keyframes tictactoe {

@@ -45,7 +45,7 @@ const playing = () => {
 }
 
 const printCell = (e) => {
-    // Asks for the actual player turn
+    // Change the actual player turn if the cell is empty
     if (e.target.textContent === '') {
         turn = changeTurn(turn);
 
@@ -156,11 +156,13 @@ const removeModal = () => {
 
 closeModal.addEventListener('click',removeModal);
 
-window.addEventListener("click", (e)=> {
+/* window.addEventListener("click", (e)=> {
     if(e.target == modalContainer) {
-        removeModal();
-    }
-})
+    setTimeout( ()=> { {
+            removeModal();
+        }
+    },2500)
+    }}); */
 
 const ticTacToe = () => {
     newGame();
