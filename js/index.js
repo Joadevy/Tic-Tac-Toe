@@ -31,7 +31,6 @@ const newGame = () => {
     result.textContent = '';
     playsCounter = 0;
      if (modalButtons.hasChildNodes() == true) {
-         console.log('ola');
         let button = document.querySelectorAll('.resetButton');
         modalButtons.removeChild(button[0]);
         modalButtons.removeChild(button[1]);
@@ -47,20 +46,23 @@ const playing = () => {
 
 const printCell = (e) => {
     // Asks for the actual player turn
-    turn = changeTurn(turn);
-    // function (muestraTurnoEnPantalla) >>>> Que muestre un cartelito de que jugador va proximo.
-    // Displays the symbol acordding to the turn-player and if the cell is empty.
-    if((turn == 0)&&(e.target.textContent === '')&&(gameStatus == true)) {
-        e.target.classList.remove('darksalmon');
-        e.target.classList.add('darkolivegreen');
-        e.target.textContent ='O';
-        playsCounter++;
-    } else if ((turn == 1)&&(e.target.textContent === '')&&(gameStatus ==true)){
-        e.target.classList.remove('darkolivegreen');
-        e.target.classList.add('darksalmon');
-        e.target.textContent ='X';
-        playsCounter++;
+    if (e.target.textContent === '') {
+        turn = changeTurn(turn);
+
+        // Displays the symbol acordding to the turn-player and if the cell is empty.
+        if((turn == 0)&&(gameStatus == true)) {
+            e.target.classList.remove('darksalmon');
+            e.target.classList.add('darkolivegreen');
+            e.target.textContent ='O';
+            playsCounter++;
+        } else if ((turn == 1)&&(gameStatus ==true)){
+            e.target.classList.remove('darkolivegreen');
+            e.target.classList.add('darksalmon');
+            e.target.textContent ='X';
+            playsCounter++;
+        }
     }
+    // function (muestraTurnoEnPantalla) >>>> Que muestre un cartelito de que jugador va proximo.
     checkForWinner();
     updateGlobalScore(gameStatus);
 }
@@ -76,8 +78,6 @@ const checkForWinner = () => {
                         result.textContent = 'PLAYER X WIN';
                         winsCounterX++;
                         playAgain();
-                        resetScoreboard();
-                        openModal();
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][1]].textContent == 'O')&&
@@ -86,8 +86,6 @@ const checkForWinner = () => {
                         result.textContent =  'PLAYER O WIN';
                         winsCounterO++;
                         playAgain();
-                        resetScoreboard();
-                        openModal();
              } 
         }
     }
@@ -95,8 +93,6 @@ const checkForWinner = () => {
         result.textContent =  'DRAW';
         gameStatus = false;
         playAgain();
-        resetScoreboard();
-        openModal();
     }
 }
 
@@ -128,6 +124,8 @@ const playAgain = () => {
     button.classList.add('resetButton');
     modalButtons.appendChild(button);
     button.addEventListener("click",newGame);
+    resetScoreboard();
+    openModal();
 }
 
 const resetScoreboard = () => {
