@@ -7,6 +7,7 @@ const main = document.querySelector(".main");
 const closeModal = document.querySelector('.close');
 const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modal-container');
+const modalButtons = document.querySelector('.modal-buttons');
 
 let turn;
 let gameStatus = false;
@@ -29,9 +30,12 @@ const newGame = () => {
     gameStatus = true;
     result.textContent = '';
     playsCounter = 0;
-     if (document.querySelector(".resetButton") != null) {
-        let button = document.querySelector('.resetButton');
-        main.removeChild(button);
+     if (modalButtons.hasChildNodes() == true) {
+         console.log('ola');
+        let button = document.querySelectorAll('.resetButton');
+        modalButtons.removeChild(button[0]);
+        modalButtons.removeChild(button[1]);
+        removeModal();
     } 
 }
 
@@ -72,6 +76,7 @@ const checkForWinner = () => {
                         result.textContent = 'PLAYER X WIN';
                         winsCounterX++;
                         playAgain();
+                        resetScoreboard();
                         openModal();
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
@@ -81,6 +86,7 @@ const checkForWinner = () => {
                         result.textContent =  'PLAYER O WIN';
                         winsCounterO++;
                         playAgain();
+                        resetScoreboard();
                         openModal();
              } 
         }
@@ -89,6 +95,7 @@ const checkForWinner = () => {
         result.textContent =  'DRAW';
         gameStatus = false;
         playAgain();
+        resetScoreboard();
         openModal();
     }
 }
@@ -119,8 +126,20 @@ const playAgain = () => {
     const button = document.createElement("BUTTON");
     button.textContent = "Play again!";
     button.classList.add('resetButton');
-    main.appendChild(button);
+    modalButtons.appendChild(button);
     button.addEventListener("click",newGame);
+}
+
+const resetScoreboard = () => {
+    const button = document.createElement("BUTTON");
+    button.textContent = 'Reset scoreboard';
+    button.classList.add('resetButton');
+    modalButtons.appendChild(button);
+    button.addEventListener("click", () => {
+        winsCounterX = 0; 
+        winsCounterO = 0;
+        updateGlobalScore(false);
+    })
 }
 
 const openModal = () => {
