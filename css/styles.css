@@ -132,6 +132,7 @@ button:hover {
 
 .close {
     position: absolute;
+    border: 1px solid rgb(66, 170, 170);
     top: 5px;
     right: 5px;
     display: inline-block;
@@ -139,7 +140,7 @@ button:hover {
     height: 25px;
     background-color: #222;
     border-radius: 50%;
-    color: rgb(66, 170, 170);
+    color: whitesmoke;
     line-height: 25px;
     cursor: pointer;
     text-align: center;

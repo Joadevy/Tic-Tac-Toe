@@ -38,7 +38,7 @@ const newGame = () => {
         removeModal();
     } 
      if (turn != 0) {
-        showFirstTurn.textContent= `Fist player: O`;
+        showFirstTurn.textContent= `First player: O`;
         showFirstTurn.style.color = "darkolivegreen";
     } else {
         showFirstTurn.textContent = `First player: X`;
