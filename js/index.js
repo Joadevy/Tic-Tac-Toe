@@ -12,7 +12,7 @@ const showFirstTurn = document.querySelector('.firstTurn');
 
 let turn;
 let gameStatus = false;
-let playsCounter = 0;
+let playsCounter = 0; // Tracks the movement number of both players.
 let winsCounterX = 0; let winsCounterO = 0; // Counts the amount of wins of each player.
 const WINNING_PLAYS = [
     [0,1,2],
@@ -25,17 +25,18 @@ const WINNING_PLAYS = [
     [2,4,6]
 ]
 
+// Calls the functions to start a new game
 const newGame = () => {
     resetGame();
     removeModalButtons ();
     showFirstPlayer();
 }
 
+// Puts the cells empty, selects the first player move and resets the move counter to zero.
 const resetGame = () => {
     cells.forEach(element => element.textContent = '');
     turn = selectFirstPlayer();
     gameStatus = true;
-    result.textContent = '';
     playsCounter = 0;
 }
 
@@ -44,6 +45,7 @@ const selectFirstPlayer = () => {
     return playerRandom = Math.round(Math.random());
 }
 
+// If there are buttons in the modal window, removes it for avoid duplicate buttons (probably this is not the best practice)
 const removeModalButtons = () => {
     if (modalButtons.hasChildNodes() == true) {
         let button = document.querySelectorAll('.resetButton');
@@ -53,6 +55,7 @@ const removeModalButtons = () => {
     } 
 }
 
+// Removes the modal window after 500ms to execute the animation correctly.
 const removeModal = () => {
     modal.classList.toggle("modal-close");
     setTimeout(()=>{
@@ -63,6 +66,7 @@ const removeModal = () => {
 
 closeModal.addEventListener('click',removeModal);
 
+// Displays the first player's information before the first move of the game.
 const showFirstPlayer = () => {
     if (turn != 0) {
         showFirstTurn.textContent= `First player: O`;
@@ -73,12 +77,14 @@ const showFirstPlayer = () => {
     } 
 }
 
+// Adds the listener for each cell defining the printAndCheck to the event.
 const playing = () => {
     for (let cell=0;cell<9;cell++)  {
         cells[cell].addEventListener("click",(e) => printAndCheck(e));
     }
 }
 
+// Calls the functions to removes the alert after the first move, print the movements, check and show the game-result and update the scoreboard.
 const printAndCheck= (e) => {
     removeFirstTurnAlert();
     print(e);
@@ -86,10 +92,12 @@ const printAndCheck= (e) => {
     updateGlobalScore(gameStatus);
 }
 
+// Removes the alert of first move.
 const removeFirstTurnAlert = () => {
     showFirstTurn.textContent= ``;
 } 
 
+// Changes the turn and prints the movement of the player after the click.
 const print = (e) => {
     if (e.target.textContent === '') {
         // Change the actual player turn if the cell is empty
@@ -110,6 +118,7 @@ const print = (e) => {
     }
 }
 
+// Changes the player turn.
 const changeTurn = (previousPlayer) => {
     if (previousPlayer == 0){
         return 1;
@@ -118,6 +127,7 @@ const changeTurn = (previousPlayer) => {
     }
 }
 
+// After the 5 movement, begins to check if there has been a winner. Uses the established WINNING_PLAYS for compare.
 const checkForWinner = () => {
     if (playsCounter >=5 && playsCounter <=9 && gameStatus == true) { // Start to check only if there are minimum 5 moves on the table.
         for (let play in WINNING_PLAYS) {
@@ -139,6 +149,7 @@ const checkForWinner = () => {
     }
 }
 
+// Uses the result of checkForWinner to add the winner into the modal window and calls the play again function.
 const showResult = (resultOfGame) => {
     if (resultOfGame === 'X') {
         gameStatus = false;
@@ -151,18 +162,20 @@ const showResult = (resultOfGame) => {
         winsCounterO++;
         playAgain();
     } else if (resultOfGame === 'DRAW'){
-        result.textContent =  'DRAW';
         gameStatus = false;
+        result.textContent =  'DRAW';
         playAgain();
     }
 }
 
+// Calls the functions to show the buttons in the modal window and opens it.
 const playAgain = () => {
     showPlayAgainButton();
     showResetScoreButton();
     openModal();
 }
 
+// Displays the play again button in the modal window and adds the listener to reset the game so as to play again.
 showPlayAgainButton = () => {
     const button = document.createElement("BUTTON");
     button.textContent = "Play again";
@@ -171,6 +184,7 @@ showPlayAgainButton = () => {
     button.addEventListener("click",newGame);
 }
 
+//Displays the reset scoreboard button in the modal window and adds the listener to reset the wins counter of both players and update the global score (0-0).
 const showResetScoreButton = () => {
     const button = document.createElement("BUTTON");
     button.textContent = 'Reset scoreboard';
@@ -183,6 +197,7 @@ const showResetScoreButton = () => {
     })
 }
 
+// Updates the scoreboard.
 const updateGlobalScore = (gameStatus) => {
     if (gameStatus == false) {
         scoreX.innerHTML = `Player X: <b>${winsCounterX}</b>`;
@@ -190,12 +205,14 @@ const updateGlobalScore = (gameStatus) => {
     }
 }
 
+// Makes the modal window visible.
 const openModal = () => {
     modalContainer.style.opacity = "1";
     modalContainer.style.visibility = "visible";
     modal.classList.toggle("modal-close");
 }
 
+// Calls the functions to start a game.
 const ticTacToe = () => {
     newGame();
     playing();
