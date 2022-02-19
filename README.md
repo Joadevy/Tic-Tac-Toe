@@ -40,7 +40,7 @@ I'm really excited to keep learning about frontend technologies, specially more 
 ## Author
 
 - Twitter - [@JoaquinArlettaz](https://twitter.com/JoaquinArlettaz)
-- Gmail = [jjoaquinArlettaz@gmail.com](mailto:jjoaquinarlettaz@gmail.com)
+- Gmail - [jjoaquinArlettaz@gmail.com](mailto:jjoaquinarlettaz@gmail.com)
 - LinkedIn - [@joaquin-arlettaz](https://www.linkedin.com/in/joaqu%C3%ADn-arlettaz/)
 
 ## Got feedback or any comment for me?
