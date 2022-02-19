@@ -12,7 +12,7 @@
   - [What I learned](#what-I-learned)
   - [Continued development](#continued-development)
   - [Author](#author)
-  - [Contact me](#got-feedback-or-any-comment-for-me?)
+  - [Contact me](#got-feedback-or-any-comment-for-me)
 
 ## Overview
 This is my first project after learning in depth some concepts of the javascript language. I've created it so as to put the knowledge into practice because it's the way to acquire and really understand the things I've learned before. I chose to start with an 'easy' project for the first time and because I want to create many things using different concepts of JS. 
