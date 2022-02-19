@@ -26,18 +26,45 @@ const WINNING_PLAYS = [
 ]
 
 const newGame = () => {
+    resetGame();
+    removeModalButtons ();
+    showFirstPlayer();
+}
+
+const resetGame = () => {
     cells.forEach(element => element.textContent = '');
     turn = selectFirstPlayer();
     gameStatus = true;
     result.textContent = '';
     playsCounter = 0;
-     if (modalButtons.hasChildNodes() == true) {
+}
+
+// Selects a random number between 0/1 to define the first player.
+const selectFirstPlayer = () => {
+    return playerRandom = Math.round(Math.random());
+}
+
+const removeModalButtons = () => {
+    if (modalButtons.hasChildNodes() == true) {
         let button = document.querySelectorAll('.resetButton');
         modalButtons.removeChild(button[0]);
         modalButtons.removeChild(button[1]);
         removeModal();
     } 
-     if (turn != 0) {
+}
+
+const removeModal = () => {
+    modal.classList.toggle("modal-close");
+    setTimeout(()=>{
+        modalContainer.style.opacity = "0";
+        modalContainer.style.visibility = "hidden";
+    },500);
+}
+
+closeModal.addEventListener('click',removeModal);
+
+const showFirstPlayer = () => {
+    if (turn != 0) {
         showFirstTurn.textContent= `First player: O`;
         showFirstTurn.style.color = "darkolivegreen";
     } else {
@@ -48,14 +75,24 @@ const newGame = () => {
 
 const playing = () => {
     for (let cell=0;cell<9;cell++)  {
-        cells[cell].addEventListener("click",(e) => printCell(e));
+        cells[cell].addEventListener("click",(e) => printAndCheck(e));
     }
 }
 
-const printCell = (e) => {
-    // Change the actual player turn if the cell is empty
+const printAndCheck= (e) => {
+    removeFirstTurnAlert();
+    print(e);
+    showResult(checkForWinner());
+    updateGlobalScore(gameStatus);
+}
+
+const removeFirstTurnAlert = () => {
     showFirstTurn.textContent= ``;
+} 
+
+const print = (e) => {
     if (e.target.textContent === '') {
+        // Change the actual player turn if the cell is empty
         turn = changeTurn(turn);
 
         // Displays the symbol acordding to the turn-player and if the cell is empty.
@@ -71,9 +108,14 @@ const printCell = (e) => {
             playsCounter++;
         }
     }
-    // function (muestraTurnoEnPantalla) >>>> Que muestre un cartelito de que jugador va proximo.
-    checkForWinner();
-    updateGlobalScore(gameStatus);
+}
+
+const changeTurn = (previousPlayer) => {
+    if (previousPlayer == 0){
+        return 1;
+    } else if (previousPlayer == 1){
+        return 0;
+    }
 }
 
 const checkForWinner = () => {
@@ -83,61 +125,53 @@ const checkForWinner = () => {
             (cells[WINNING_PLAYS[play][0]].textContent == 'X')&&
             (cells[WINNING_PLAYS[play][1]].textContent == 'X')&&
             (cells[WINNING_PLAYS[play][2]].textContent == 'X')){
-                        gameStatus = false;
-                        result.textContent = 'PLAYER X WIN';
-                        winsCounterX++;
-                        playAgain();
+                        return 'X';
              } else if (
              (cells[WINNING_PLAYS[play][0]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][1]].textContent == 'O')&&
              (cells[WINNING_PLAYS[play][2]].textContent == 'O')){
-                        gameStatus = false;
-                        result.textContent =  'PLAYER O WIN';
-                        winsCounterO++;
-                        playAgain();
+                        return ('O');
              } 
         }
     }
     if ((playsCounter == 9) && (gameStatus == true)) { // If there are 9 moves on the table and game hasn't ended yet, it's a draw.
+        return 'DRAW';
+    }
+}
+
+const showResult = (resultOfGame) => {
+    if (resultOfGame === 'X') {
+        gameStatus = false;
+        result.textContent = 'PLAYER X WIN';
+        winsCounterX++;
+        playAgain();
+    } else if (resultOfGame === 'O'){
+        gameStatus = false;
+        result.textContent =  'PLAYER O WIN';
+        winsCounterO++;
+        playAgain();
+    } else if (resultOfGame === 'DRAW'){
         result.textContent =  'DRAW';
         gameStatus = false;
         playAgain();
     }
 }
 
-// Selects a random number between 0/1 to define the first player.
-const selectFirstPlayer = () => {
-    return playerRandom = Math.round(Math.random());
-}
-
-const changeTurn = (previousPlayer) => {
-    if (previousPlayer == 0){
-        //scoreX.classList.add('activeTurn'); Para que cambie de color en el turno de cada uno
-        return 1;
-    } else if (previousPlayer == 1){
-        //scoreO.classList.add('activeTurn');
-        return 0;
-    }
-}
-
-const updateGlobalScore = (gameStatus) => {
-    if (gameStatus == false) {
-        scoreX.innerHTML = `Player X: <b>${winsCounterX}</b>`;
-        scoreO.innerHTML = `Player O: <b>${winsCounterO}</b>`;
-    }
-}
-
 const playAgain = () => {
+    showPlayAgainButton();
+    showResetScoreButton();
+    openModal();
+}
+
+showPlayAgainButton = () => {
     const button = document.createElement("BUTTON");
     button.textContent = "Play again";
     button.classList.add('resetButton');
     modalButtons.appendChild(button);
     button.addEventListener("click",newGame);
-    resetScoreboard();
-    openModal();
 }
 
-const resetScoreboard = () => {
+const showResetScoreButton = () => {
     const button = document.createElement("BUTTON");
     button.textContent = 'Reset scoreboard';
     button.classList.add('resetButton');
@@ -149,29 +183,19 @@ const resetScoreboard = () => {
     })
 }
 
+const updateGlobalScore = (gameStatus) => {
+    if (gameStatus == false) {
+        scoreX.innerHTML = `Player X: <b>${winsCounterX}</b>`;
+        scoreO.innerHTML = `Player O: <b>${winsCounterO}</b>`;
+    }
+}
+
+
 const openModal = () => {
     modalContainer.style.opacity = "1";
     modalContainer.style.visibility = "visible";
     modal.classList.toggle("modal-close");
 }
-
-const removeModal = () => {
-    modal.classList.toggle("modal-close");
-    setTimeout(()=>{
-        modalContainer.style.opacity = "0";
-        modalContainer.style.visibility = "hidden";
-    },500);
-}
-
-closeModal.addEventListener('click',removeModal);
-
-/* window.addEventListener("click", (e)=> {
-    if(e.target == modalContainer) {
-    setTimeout( ()=> { {
-            removeModal();
-        }
-    },2500)
-    }}); */
 
 const ticTacToe = () => {
     newGame();
