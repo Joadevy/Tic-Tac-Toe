@@ -58,7 +58,7 @@ button {
     border: .5px solid rgb(66, 170, 170);
     background-color: rgb(20, 19, 19);
     color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: .25rem;
     width: 35%;
     text-align: center;
@@ -159,7 +159,7 @@ button:hover, .close:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .25rem;
+    gap: .5rem;
 }
 
 .modal-buttons>button {
@@ -205,9 +205,12 @@ button:hover, .close:hover {
 
     button {
         padding: .4rem;
-        font-size: 14px;
         font-weight: bold;
-        width: 48%;
+        width: 45%;
+    }
+
+    .modal-buttons{
+        gap: .25rem;
     }
     
 }
