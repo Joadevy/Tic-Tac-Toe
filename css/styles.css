@@ -190,7 +190,7 @@ button:hover, .close:hover {
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 650px) {
     .modal {
         width: 80%;
     }
@@ -201,6 +201,13 @@ button:hover, .close:hover {
 
     .result {
         font-size: 35px;
+    }
+
+    button {
+        padding: .4rem;
+        font-size: 14px;
+        font-weight: bold;
+        width: 48%;
     }
     
 }

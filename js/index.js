@@ -190,7 +190,6 @@ const updateGlobalScore = (gameStatus) => {
     }
 }
 
-
 const openModal = () => {
     modalContainer.style.opacity = "1";
     modalContainer.style.visibility = "visible";
