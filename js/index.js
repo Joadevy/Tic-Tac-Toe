@@ -15,7 +15,7 @@ let animation = bodymovin.loadAnimation({
     renderer: 'svg',
     autoplay: true,
     loop: true,
-    path: '../assets/animation/snowfall.json'
+    path: 'assets/animation/snowfall.json'
 })
 let turn;
 let gameStatus = false;
