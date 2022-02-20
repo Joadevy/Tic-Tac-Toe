@@ -190,7 +190,7 @@ button:hover, .close:hover {
 
 @media only screen and (max-width: 650px) {
     .modal {
-        width: 80%;
+        width: 90%;
     }
 
     header {
@@ -204,7 +204,7 @@ button:hover, .close:hover {
     button {
         padding: .4rem;
         font-weight: bold;
-        width: 45%;
+        width: 48%;
     }
 
     .modal-buttons{
