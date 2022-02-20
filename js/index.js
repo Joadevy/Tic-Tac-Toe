@@ -10,6 +10,13 @@ const modalContainer = document.querySelector('.modal-container');
 const modalButtons = document.querySelector('.modal-buttons');
 const showFirstTurn = document.querySelector('.firstTurn');
 
+let animation = bodymovin.loadAnimation({
+    container: document.getElementById('anim'),
+    renderer: 'svg',
+    autoplay: true,
+    loop: true,
+    path: '../assets/animation/snowfall.json'
+})
 let turn;
 let gameStatus = false;
 let playsCounter = 0; // Tracks the movement number of both players.
